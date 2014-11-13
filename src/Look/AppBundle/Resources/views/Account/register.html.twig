@@ -1,0 +1,17 @@
+{% extends 'LookAppBundle::look_layout.html.twig' %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+	<form action="{{ path('account_register') }}" method="POST" id="register_form">
+        {{ form_errors(form) }}
+
+        {{ form_row(form.username) }}
+        {{ form_row(form.password) }}
+
+        {{ form_rest(form) }}
+        <input type="submit" value="Send" class="symfony-button-grey" />
+    </form>
+
+{% endblock %}

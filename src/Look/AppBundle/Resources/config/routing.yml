@@ -1,0 +1,7 @@
+_welcome:
+    path:     /welcome
+    defaults: { _controller: LookAppBundle:Welcome:index }
+
+_account:
+    type:     annotation
+    resource: "@LookAppBundle/Controller/"

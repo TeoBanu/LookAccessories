@@ -1,0 +1,2 @@
+_look_app:
+    resource: "@LookAppBundle/Resources/config/routing.yml"
