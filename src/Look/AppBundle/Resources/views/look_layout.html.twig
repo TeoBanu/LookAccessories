@@ -2,6 +2,7 @@
     <title>LOOK Accessories</title>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
     <link rel="stylesheet" href={{ asset('bundles/lookapp/css/style.css') }} />
+	<link rel="stylesheet" href={{ asset('bundles/framework/css/body.css') }} />
   {% endblock %}
   
   {% block body %}
@@ -16,15 +17,16 @@
           <li><a href="about.html">About</a></li>
           <li><a href="">Search</a></li>
           <li><a href="">Language</a></li>
-          <li><a href="register.html">Register</a></li>
+          <li><a href="register">Register</a></li>
           <li><a href="login">Login</a></li>
         </ul>
       </div>
     </div>
-  </div>
 	
-	{% block content %}
+	{% block columns %}
 		<div align=center><img src={{ asset('bundles/lookapp/img/body.jpg') }} /></div>
 	{% endblock %}
+ 
+  </div>
   
-  {% endblock %}
+ {% endblock %}

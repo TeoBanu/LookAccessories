@@ -54,7 +54,7 @@ width:900px;
 height:40px;
 margin:75px 0 0 0px;
 position: relative;
-background:url(../img/menu_bg.jpg) no-repeat center;
+background:url(../img/menu_bg.png) no-repeat center;
 }
 #menu ul{
 display:block;
@@ -119,16 +119,19 @@ padding:2px 2px 0 2px;
 
 /*------------------------------------center content--------------------*/
 .center_content{
-width:900px;
-padding:0px 0 0 0;
-background:url(../img/center_bg.gif) repeat-y center;
+width:860px;
+height:100%;
+padding:20px 20px 20px 20px;
+background:url(../img/center_bg.png);
+background-repeat:repeat-y;
+background-position:right;
 }
-.left_content{
+.left_content{ /* should remove top,bottom,left padding as it is inherited from center_content */
 width:490px;
 float:left;
 padding:20px 0 20px 20px;
 }
-.right_content{
+.right_content{ /* should remove top,bottom,left padding as it is inherited from center_content */
 width:370px;
 float:left;
 padding:20px 0 20px 20px;
@@ -377,13 +380,24 @@ color:#990000;
 /*---------------contact_form------------------*/
 .contact_form{
 width:355px;
-float:left;
+float:none;
 padding:25px;
 margin:20px 0 0 15px;
 _margin:20px 0 0 5px;
 border:1px #DFD1D2 dashed;
 position:relative;
 }
+.contact_form  input[type=text], .contact_form  input[type=password]{
+margin-top:5px;
+}
+.contact_form input[type=submit] {
+margin-top:20px;
+margin-left:100px;
+}
+.contact_form label {
+margin-right:5px;
+}
+
 .form_row{
 width:335px;
 _width:355px;

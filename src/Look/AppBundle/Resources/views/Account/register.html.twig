@@ -1,4 +1,4 @@
-{% extends 'LookAppBundle::look_layout.html.twig' %}
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
 
 {% block title %} Login {% endblock %}
 
@@ -9,6 +9,12 @@
 
         {{ form_row(form.username) }}
         {{ form_row(form.password) }}
+		{{ form_row(form.email) }}
+		{{ form_row(form.phone_number) }}
+		{{ form_row(form.first_name) }}
+		{{ form_row(form.last_name) }}
+		{{ form_row(form.address) }}
+		{{ form_row(form.gender) }}
 
         {{ form_rest(form) }}
         <input type="submit" value="Send" class="symfony-button-grey" />
