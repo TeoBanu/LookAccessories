@@ -377,27 +377,16 @@ float:left;
 margin:12px 0 0 10px;
 color:#990000;
 }
-/*---------------contact_form------------------*/
-.contact_form{
-width:355px;
+/*---------------form_area------------------*/
+.form_wrapper{
 float:none;
 padding:25px;
 margin:20px 0 0 15px;
 _margin:20px 0 0 5px;
 border:1px #DFD1D2 dashed;
 position:relative;
+display: inline-block; /* makes width wrap the size of content*/
 }
-.contact_form  input[type=text], .contact_form  input[type=password]{
-margin-top:5px;
-}
-.contact_form input[type=submit] {
-margin-top:20px;
-margin-left:100px;
-}
-.contact_form label {
-margin-right:5px;
-}
-
 .form_row{
 width:335px;
 _width:355px;
@@ -406,6 +395,23 @@ padding:10px 0 10px 0;
 _padding:5px 0 5px 0;
 color:#a53d17;
 }
+.form_row label{
+width:75px;
+float:left;
+font-size:12px;
+text-align:right;
+padding:4px 5px 0 0;
+color: #333333;
+}
+
+input[type=submit] {
+margin-top:20px;
+}
+label {
+width:200px;
+margin-right:5px;
+}
+
 label.contact{
 width:75px;
 float:left;
