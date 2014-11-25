@@ -16,115 +16,115 @@ class Product
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-	
-	
+    
+    
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $name;
-	 
-	 
+     protected $name;
+     
+     
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank()
      */
-	 protected $price;
-	 
-	 
+     protected $price;
+     
+     
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $category;
-	 
-	 
+     protected $category;
+     
+     
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $stock;
-	 
-	 
+     protected $stock;
+     
+     
      /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $brand;
-	 
-	  /**
+     protected $brand;
+     
+      /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(max = 100000)
      */
-	 protected $description;
-	 
-	 public function getId()
-	{
-		return $this->id;
-	}
-	
-	public function getName()
-	{
-		return $this->name;
-	}
-	
-	public function setName($name)
-	{
-		$this->name = $name;
-	}
-	
-	public function getPrice()
-	{
-		return $this->price;
-	}
-	
-	public function setPrice($price)
-	{
-		$this->price = $price;
-	}
-	
-	public function getCategory()
-	{
-		return $this->category;
-	}
-	
-	public function setCategory($category)
-	{
-		$this->category = $category;
-	}
-	
-	public function getStock()
-	{
-		return $this->stock;
-	}
-	
-	public function setStock($stock)
-	{
-		$this->stock = $stock;
-	}
-	
-	public function getBrand()
-	{
-		return $this->brand;
-	}
-	
-	public function setBrand($brand)
-	{
-		$this->brand = $brand;
-	}
-	
-	public function getDescription()
-	{
-		return $this->description;
-	}
-	
-	public function setDescription($description)
-	{
-		$this->description = $description;
-	}
-	 
+     protected $description;
+     
+     public function getId()
+    {
+        return $this->id;
+    }
+    
+    public function getName()
+    {
+        return $this->name;
+    }
+    
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+    
+    public function getPrice()
+    {
+        return $this->price;
+    }
+    
+    public function setPrice($price)
+    {
+        $this->price = $price;
+    }
+    
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    public function setCategory($category)
+    {
+        $this->category = $category;
+    }
+    
+    public function getStock()
+    {
+        return $this->stock;
+    }
+    
+    public function setStock($stock)
+    {
+        $this->stock = $stock;
+    }
+    
+    public function getBrand()
+    {
+        return $this->brand;
+    }
+    
+    public function setBrand($brand)
+    {
+        $this->brand = $brand;
+    }
+    
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+     
 }

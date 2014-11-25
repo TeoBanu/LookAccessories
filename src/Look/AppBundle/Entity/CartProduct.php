@@ -16,30 +16,30 @@ class CartProduct
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-	
-	/**
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Cart", inversedBy="cartProducts")
      * @ORM\JoinColumn(name="cart_id", referencedColumnName="id")
      **/
-	protected $cart;
-	
-	/**
+    protected $cart;
+    
+    /**
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      **/
-	protected $product;
-	
-	/**
+    protected $product;
+    
+    /**
      * @ORM\Column(type="integer")
      */
-	protected $quantity;
+    protected $quantity;
 
     public function getId()
     {
         return $this->id;
     }
-	
-	public function getQuantity()
+    
+    public function getQuantity()
     {
         return $this->quantity;
     }
@@ -48,5 +48,5 @@ class CartProduct
     {
         $this->quantity = $quantity;
     }
-	
+    
 }

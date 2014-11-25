@@ -16,13 +16,13 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class StaticController extends Controller
 {
 
-	/**
-	 * @Route( "/")
-	 * @Template
-     */	
+    /**
+     * @Route( "/")
+     * @Template
+     */ 
     public function indexAction()
     {
-		return $this->render('LookAppBundle:Static:index.html.twig');
+        return $this->render('LookAppBundle:Static:index.html.twig');
     }
-	
+    
 }

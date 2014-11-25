@@ -1,0 +1,46 @@
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{% block title %} Products {% endblock %}
+
+{% block content %}
+
+    <h1>Products:</h1>
+
+    <table border="1">
+        <tr>
+            <td style="font-weight:bold">Name</td>
+            <td style="font-weight:bold">Price</td>
+            <td style="font-weight:bold">Category</td>
+            <td style="font-weight:bold">Stock</td>
+            <td style="font-weight:bold">Brand</td>
+            <td style="font-weight:bold">Description</td>
+        </tr>
+        {% for product in products %}
+            <tr>
+                    <td>
+                        {{ product.name }}
+                    </td>
+                    <td>
+                        {{ product.price }}
+                    </td>
+                    <td>
+                        {{ product.category }}
+                    </td>
+                    <td>
+                        {{ product.stock }}
+                    </td>
+                    <td>
+                        {{ product.brand }}
+                    </td>
+                    <td>
+                        {{ product.description }}
+                    </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <form action="addProduct">
+        <input type="submit" value="Add New Product" class="symfony-button-grey">
+    </form>
+
+{% endblock %}

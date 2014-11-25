@@ -16,116 +16,116 @@ class Address
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-	
-	
+    
+    
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $country;
-	 
-	 
+     protected $country;
+     
+     
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $city;
-	 
-	 
+     protected $city;
+     
+     
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $region;
-	 
-	 
+     protected $region;
+     
+     
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $street;
-	 
-	 
+     protected $street;
+     
+     
      /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      * @Assert\Length(max = 4096)
      */
-	 protected $number;
-	 
-	  /**
+     protected $number;
+     
+      /**
      * @ORM\Column(type="string", length=255)
      * @Assert\Length(max = 4096)
      */
-	 protected $apartment;
-	 
-	 public function getId()
-	{
-		return $this->id;
-	}
-	
-	public function getCountry()
-	{
-		return $this->country;
-	}
-	
-	public function setCountry($country)
-	{
-		$this->country = $country;
-	}
-	
-	public function getCity()
-	{
-		return $this->city;
-	}
-	
-	public function setCity($city)
-	{
-		$this->city = $city;
-	}
-	
-	public function getRegion()
-	{
-		return $this->region;
-	}
-	
-	public function setRegion($region)
-	{
-		$this->region = $region;
-	}
-	
-	public function getStreet()
-	{
-		return $this->street;
-	}
-	
-	public function setStreet($street)
-	{
-		$this->street = $street;
-	}
-	
-	public function getNumber()
-	{
-		return $this->number;
-	}
-	
-	public function setNumber($number)
-	{
-		$this->number = $number;
-	}
-	
-	public function getApartment()
-	{
-		return $this->apartment;
-	}
-	
-	public function setApartment($apartment)
-	{
-		$this->apartment = $apartment;
-	}
-	 
+     protected $apartment;
+     
+     public function getId()
+    {
+        return $this->id;
+    }
+    
+    public function getCountry()
+    {
+        return $this->country;
+    }
+    
+    public function setCountry($country)
+    {
+        $this->country = $country;
+    }
+    
+    public function getCity()
+    {
+        return $this->city;
+    }
+    
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+    
+    public function getRegion()
+    {
+        return $this->region;
+    }
+    
+    public function setRegion($region)
+    {
+        $this->region = $region;
+    }
+    
+    public function getStreet()
+    {
+        return $this->street;
+    }
+    
+    public function setStreet($street)
+    {
+        $this->street = $street;
+    }
+    
+    public function getNumber()
+    {
+        return $this->number;
+    }
+    
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    }
+    
+    public function getApartment()
+    {
+        return $this->apartment;
+    }
+    
+    public function setApartment($apartment)
+    {
+        $this->apartment = $apartment;
+    }
+     
 }

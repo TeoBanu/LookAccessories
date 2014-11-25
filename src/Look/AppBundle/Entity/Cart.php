@@ -23,20 +23,20 @@ class Cart
      * @ORM\ManyToOne(targetEntity="User", inversedBy="carts")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      **/
-	protected $user;
-	
-	/**
+    protected $user;
+    
+    /**
      * @ORM\OneToMany(targetEntity="CartProduct", mappedBy="cart")
      **/
-	protected $cartProducts;
-	
-	 /**
+    protected $cartProducts;
+    
+     /**
      * @ORM\Column(type="boolean")
      * @Assert\NotBlank()
-     */	
-	protected $is_cart;
-	
-	public function __construct() {
+     */ 
+    protected $is_cart;
+    
+    public function __construct() {
         $this->cartProducts = new ArrayCollection();
     }
 
@@ -44,8 +44,8 @@ class Cart
     {
         return $this->id;
     }
-	
-	public function getUserid()
+    
+    public function getUserid()
     {
         return $this->user_id;
     }
@@ -54,7 +54,7 @@ class Cart
     {
         $this->user_id = $user_id;
     }
-	public function getIsCart()
+    public function getIsCart()
     {
         return $this->is_cart;
     }

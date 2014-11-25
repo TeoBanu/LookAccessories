@@ -2,13 +2,13 @@ LookAccessories source code
 ========================
 
 ### Requirements:
-XAMP installed
+XAMP for Windows
 
 Apache and MySQL services running
 
 MySQL database created
 
-PHP in the path
+PHP and Git in the path
 
 ### Windows installation steps:
 

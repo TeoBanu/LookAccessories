@@ -6,27 +6,27 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class AddressType extends AbstractType
+class ProductType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('country');
-        $builder->add('city');
-        $builder->add('region');
-        $builder->add('street');
-        $builder->add('number');
-        $builder->add('apartment');
+        $builder->add('name');
+        $builder->add('price');
+        $builder->add('category');
+        $builder->add('stock');
+        $builder->add('brand');
+        $builder->add('description');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Look\AppBundle\Entity\Address'
+            'data_class' => 'Look\AppBundle\Entity\Product'
         ));
     }
 
     public function getName()
     {
-        return 'address';
+        return 'product';
     }
 }
