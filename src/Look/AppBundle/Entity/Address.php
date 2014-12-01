@@ -19,47 +19,46 @@ class Address
     
     
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Length(max = 50)
      */
      protected $country;
      
      
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Length(max = 50)
      */
      protected $city;
      
      
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @ORM\Column(type="string", length=50)
+     * @Assert\Length(max = 50)
      */
      protected $region;
      
      
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50)
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Length(max = 50)
      */
      protected $street;
      
      
      /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=10)
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Length(max = 10)
      */
      protected $number;
      
       /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(max = 4096)
+     * @ORM\Column(type="string", length=10)
+     * @Assert\Length(max = 10)
      */
      protected $apartment;
      

@@ -31,6 +31,9 @@ class CartProduct
     
     /**
      * @ORM\Column(type="integer")
+     * @Assert\Range(
+     *      min = 1,
+     * )
      */
     protected $quantity;
 

@@ -1,12 +1,16 @@
+{% form_theme form 'LookAppBundle:Form:custom_form_layout.html.twig' %}
 {% extends 'LookAppBundle::look_layout_center.html.twig' %}
 
 {% block title %} Add Product {% endblock %}
 
 {% block content %}
 
+	<div class="form_wrapper">
     <form action="{{ path('add_product') }}" method="POST" id="add_product_form">
         {{ form_errors(form) }}
 
+		<div class="form_row"><h2>Add new product</h2></div>
+		
         {{ form_row(form.name) }}
         {{ form_row(form.price) }}
         {{ form_row(form.category) }}
@@ -17,5 +21,6 @@
         {{ form_rest(form) }}
         <input type="submit" value="Add" class="symfony-button-grey" />
     </form>
+	</div>
 
 {% endblock %}

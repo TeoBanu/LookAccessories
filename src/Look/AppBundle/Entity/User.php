@@ -34,38 +34,51 @@ class User
     /**
      * @ORM\Column(type="string", length=40)
      * @Assert\NotBlank()
+	 * @Assert\Length(min = 8, max = 40)
+	 
      */ 
     protected $username;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=49)
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Length(min = 8, max = 100)
      */
     protected $password;
     
      /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=100)
+	 * @Assert\NotBlank()
+     * @Assert\Length(max = 100)
      */
     protected $first_name;
     
      /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=100)
+	 * @Assert\NotBlank()
+     * @Assert\Length(max = 100)
      */
     protected $last_name;
     
      /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=1)
+	 * @Assert\NotBlank()
+     * @Assert\Length(max = 1)
      */
     protected $gender;
     
      /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=200)
+	 * @Assert\NotBlank()
+	 * @Assert\Email()
+     * @Assert\Length(max = 200)
      */
     protected $email;
     
      /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=15)
+	 * @Assert\NotBlank()
+	 * @Assert\Length(max = 15)
      */
     protected $phone_number;
     

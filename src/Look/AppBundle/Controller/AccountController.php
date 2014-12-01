@@ -77,5 +77,5 @@ class AccountController extends Controller
         }
         
         return array('form' => $form->createView());
-    }
 }
+    }

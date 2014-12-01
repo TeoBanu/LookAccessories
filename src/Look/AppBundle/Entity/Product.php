@@ -19,9 +19,9 @@ class Product
     
     
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Length(max = 100)
      */
      protected $name;
      
@@ -29,36 +29,37 @@ class Product
     /**
      * @ORM\Column(type="float")
      * @Assert\NotBlank()
+	 * @Assert\Type(type="float")
+     * @Assert\Range(min = 0)
      */
      protected $price;
      
      
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Length(max = 100)
      */
      protected $category;
      
      
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer")
      * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @Assert\Range(min = 0)
      */
      protected $stock;
      
      
      /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Length(max = 4096)
+     * @ORM\Column(type="string", length=50)
+     * @Assert\Length(max = 50)
      */
      protected $brand;
      
       /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\Length(max = 100000)
+     * @ORM\Column(type="string", length=1000)
+     * @Assert\Length(max = 1000)
      */
      protected $description;
      
