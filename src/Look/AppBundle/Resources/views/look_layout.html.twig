@@ -12,21 +12,25 @@
       <div class="logo"><img src={{ asset('bundles/lookapp/img/logo.jpg') }} alt="" border="0" /></div>
       <div id="menu">
         <ul>
-          <li class="selected"><a href="/">Home</a></li>
-          <li><a href="products">Products</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="">Search</a></li>
-          <li><a href="">Language</a></li>
-          <li><a href="register">Register</a></li>
-          <li><a href="login">Login</a></li>
+          {% if not menu_selected is defined %}
+            {% set menu_selected = 'home' %}
+          {% endif %}
+          <li {% if menu_selected == 'home' %} class="selected" {% endif %}> <a href="/">Home</a> </li>
+          <li {% if menu_selected == 'products' %} class="selected" {% endif %}> <a href="products">Products</a> </li>
+          <li {% if menu_selected == 'about' %} class="selected" {% endif %}> <a href="about">About</a> </li>
+          <li {% if menu_selected == 'register' %} class="selected" {% endif %}> <a href="register">Register</a> </li>
+          <li {% if menu_selected == 'login' %} class="selected" {% endif %}> <a href="login">Login</a> </li>
         </ul>
+
+        <div id="menu_right" style="float:right">
+          {{ include('LookAppBundle:components:user_area_component.html.twig') }}
+        </div>
       </div>
     </div>
   
   {% block columns %}
     <div align=center><img src={{ asset('bundles/lookapp/img/body.jpg') }} /></div>
   {% endblock %}
- 
   </div>
   
  {% endblock %}

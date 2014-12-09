@@ -1,10 +1,12 @@
 {% form_theme form 'LookAppBundle:Form:custom_form_layout.html.twig' %}
 {% extends 'LookAppBundle::look_layout_center.html.twig' %}
 
+{# initialize variables #}
+{% set menu_selected = 'register' %}
+
 {% block title %} Login {% endblock %}
 
 {% block content %}
-
 	<div class="form_wrapper">
 	<form action="{{ path('account_register') }}" method="POST" id="register_form">
         {{ form_errors(form) }}

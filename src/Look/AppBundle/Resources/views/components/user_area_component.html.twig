@@ -1,0 +1,8 @@
+{% block account %}
+	{% set user = app.session.get('user') %}
+	{% if user %}
+		Hello {{ user.firstName }}
+	{% else %}
+		<a href="/login"> login </a>
+	{% endif %}
+{% endblock %}

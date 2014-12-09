@@ -9,6 +9,7 @@ use Look\AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Config\Definition\Exception\Exception;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -43,6 +44,10 @@ class AccountController extends Controller
             
             $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
             if ($encryptedPass === $persistedUser->getPassword()) {
+                $session = $request->getSession();
+                $session->set('user', $persistedUser);
+                // use $request->getSession()->clear(); on logout
+
                 throw new Exception("Good password.");
             } else {
                 throw new Exception("Invalid password.");
@@ -65,10 +70,10 @@ class AccountController extends Controller
             // get the entity manager
             $em = $this->getDoctrine()->getManager();
             
-            $persistentUser = $form->getData();
-            $plainPassword = $persistentUser->getPassword();
+            $persistedUser = $form->getData();
+            $plainPassword = $persistedUser->getPassword();
             $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
-            $persistentUser->setPassword($encryptedPass);
+            $persistedUser->setPassword($encryptedPass);
             
             $em->persist($form->getData());
             $em->flush();

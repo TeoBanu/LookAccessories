@@ -24,5 +24,14 @@ class StaticController extends Controller
     {
         return $this->render('LookAppBundle:Static:index.html.twig');
     }
+
+	/**
+     * @Route( "/about")
+     * @Template
+     */ 
+    public function aboutAction(Request $request)
+    {
+    	return $this->render('LookAppBundle:Static:about.html.twig');
+    }
     
 }

@@ -1,6 +1,9 @@
 {% form_theme form 'LookAppBundle:Form:custom_form_layout.html.twig' %}
 {% extends 'LookAppBundle::look_layout_center.html.twig' %}
 
+{# initialize variables #}
+{% set menu_selected = 'login' %}
+
 {% block title %} Login {% endblock %}
 
 {% block content %}

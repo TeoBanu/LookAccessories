@@ -34,15 +34,14 @@ class User
     /**
      * @ORM\Column(type="string", length=40)
      * @Assert\NotBlank()
-	 * @Assert\Length(min = 8, max = 40)
-	 
+	 * @Assert\Length(min = 4, max = 40)
      */ 
     protected $username;
 
     /**
      * @ORM\Column(type="string", length=49)
      * @Assert\NotBlank()
-     * @Assert\Length(min = 8, max = 100)
+     * @Assert\Length(min = 4, max = 100)
      */
     protected $password;
     
