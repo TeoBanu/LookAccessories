@@ -25,9 +25,15 @@ class AccountController extends Controller
      */ 
     public function loginAction(Request $request)
     {
+        // if there is already a user logged in, redirect to home page
+        if ($request->getSession()->get('user/credential')) {
+            return $this->redirect($this->generateUrl('index'));
+        }
+
         $form = $this->createForm(new LoginType());
         $form->handleRequest($request);
         
+        // check if this form is submitted
         if ($form->isValid()) {
             $username = $form->get('username')->getData();
             $plainPassword = $form->get('password')->getData();
@@ -45,15 +51,16 @@ class AccountController extends Controller
             $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
             if ($encryptedPass === $persistedUser->getPassword()) {
                 $session = $request->getSession();
-                $session->set('user', $persistedUser);
-                // use $request->getSession()->clear(); on logout
-
-                throw new Exception("Good password.");
+                $session->set('user/credential', $persistedUser);
+                return $this->redirect($session->get('user/loginRedirect'));
             } else {
                 throw new Exception("Invalid password.");
             }
         }
         
+        // save referer url in session
+        $request->getSession()->set('user/loginRedirect', $request->server->get('HTTP_REFERER'));
+
         return array('form' => $form->createView());
     }
     

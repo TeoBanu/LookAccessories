@@ -17,7 +17,7 @@ class StaticController extends Controller
 {
 
     /**
-     * @Route( "/")
+     * @Route( "/", name="index")
      * @Template
      */ 
     public function indexAction()
@@ -31,6 +31,7 @@ class StaticController extends Controller
      */ 
     public function aboutAction(Request $request)
     {
+        $request->getSession()->clear();
     	return $this->render('LookAppBundle:Static:about.html.twig');
     }
     
