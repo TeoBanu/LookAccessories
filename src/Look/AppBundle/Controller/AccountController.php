@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Form\FormError;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -44,18 +45,24 @@ class AccountController extends Controller
                 array('username' => $username)
             );
             
-            if(!$persistedUser) {
-                throw new Exception("Invalid username.");
-            }
+            if($persistedUser) {
+                // throw new Exception("Invalid username.");
+                // }
             
-            $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
-            if ($encryptedPass === $persistedUser->getPassword()) {
-                $session = $request->getSession();
-                $session->set('user/credential', $persistedUser);
-                return $this->redirect($session->get('user/loginRedirect'));
-            } else {
-                throw new Exception("Invalid password.");
+                $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
+                if ($encryptedPass === $persistedUser->getPassword()) {
+                    $session = $request->getSession();
+                    $session->set('user/credential', $persistedUser);
+                    return $this->redirect($session->get('user/loginRedirect'));
+                } else {
+                    // throw new Exception("Invalid password.");
+                }
             }
+            $error = new FormError("Invalid username or password.");
+            //$form->get('field')->addError($error);
+            $form->addError($error);
+
+            return array('form' => $form->createView());
         }
         
         // save referer url in session
@@ -63,12 +70,31 @@ class AccountController extends Controller
 
         return array('form' => $form->createView());
     }
+
+    /**
+     * @Route("/logout", name="account_logout")
+     * @Template
+     */
+    public function logoutAction(Request $request) {
+        // if no user is logged in, redirect to home page
+        if (!$request->getSession()->get('user/credential')) {
+            return $this->redirect($this->generateUrl('index'));
+        }
+
+        $request->getSession()->clear();
+        return $this->redirect($this->generateUrl('index'));
+    }
     
     /**
      * @Route("/register", name="account_register")
      * @Template
      */ 
     public function registerAction(Request $request) {
+        // if there is already a user logged in, redirect to home page
+        if ($request->getSession()->get('user/credential')) {
+            return $this->redirect($this->generateUrl('index'));
+        }
+
         $user = new User();
         $form = $this->createForm(new RegisterType(), $user);
         $form->handleRequest($request);
@@ -89,5 +115,5 @@ class AccountController extends Controller
         }
         
         return array('form' => $form->createView());
-}
     }
+}

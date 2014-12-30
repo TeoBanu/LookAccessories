@@ -31,7 +31,6 @@ class StaticController extends Controller
      */ 
     public function aboutAction(Request $request)
     {
-        $request->getSession()->clear();
     	return $this->render('LookAppBundle:Static:about.html.twig');
     }
     

@@ -1,8 +1,12 @@
 {% block account %}
 	{% set user = app.session.get('user/credential') %}
 	{% if user %}
-		Hello {{ user.firstName }}
+		{# logout / edit profile #}
+			<li><a href="/logout">Logout</a></li>
+			<li {% if menu_selected == 'account' %} class="selected" {% endif %}><a href="/account">My Account - {{user.firstName}}</a></li>
 	{% else %}
-		<a href="/login"> login </a>
+		{# login / register #}
+			<li {% if menu_selected == 'login' %} class="selected" {% endif %}><a href="/login"> Login </a></li>
+			<li {% if menu_selected == 'register' %} class="selected" {% endif %}><a href="/register"> Register </a></li>
 	{% endif %}
 {% endblock %}
