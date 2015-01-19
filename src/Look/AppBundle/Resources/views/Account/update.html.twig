@@ -1,0 +1,39 @@
+{% form_theme form 'LookAppBundle:Form:custom_form_layout.html.twig' %}
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{# initialize variables #}
+{% set menu_selected = 'account' %}
+
+{% block title %} Update {% endblock %}
+
+{% block content %}
+    <div class="form_wrapper">
+    <form action="{{ path('account_update') }}" method="POST" id="update_form">
+        {{ form_errors(form) }}
+
+        <div class="form_row"><h2>User info</h2></div>
+
+        {{ form_row(form.username) }}
+        {{ form_row(form.password.password) }}
+        {{ form_row(form.password.confirm) }}
+        {{ form_row(form.email) }}
+        {{ form_row(form.phone_number) }}
+        {{ form_row(form.first_name) }}
+        {{ form_row(form.last_name) }}
+        {{ form_row(form.gender) }}
+        
+        <div class="form_row"><h2>Address info</h2></div>
+        
+        {{ form_row(form.address.country) }}
+        {{ form_row(form.address.city) }}
+        {{ form_row(form.address.region) }}
+        {{ form_row(form.address.street) }}
+        {{ form_row(form.address.number) }}
+        {{ form_row(form.address.apartment) }}
+        
+        {{ form_rest(form) }}
+        <input type="submit" value="Update" class="" />
+    </form>
+    </div>
+
+{% endblock %}

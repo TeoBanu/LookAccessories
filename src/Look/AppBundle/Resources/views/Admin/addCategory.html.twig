@@ -1,0 +1,23 @@
+{% form_theme form 'LookAppBundle:Form:custom_form_layout.html.twig' %}
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{% block title %} Add Category {% endblock %}
+
+{% set menu_selected = 'admin' %}
+
+{% block content %}
+
+    <div class="form_wrapper">
+    <form action="{{ path('add_category') }}" method="POST" id="add_category_form">
+        {{ form_errors(form) }}
+
+        <div class="form_row"><h2>Add new category</h2></div>
+        
+        {{ form_row(form.name) }}
+
+        {{ form_rest(form) }}
+        <input type="submit" value="Add" class="symfony-button-grey" />
+    </form>
+    </div>
+
+{% endblock %}

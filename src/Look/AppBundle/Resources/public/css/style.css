@@ -250,6 +250,20 @@ padding:10px 0 0 0;
 }
 .new_products{
 clear:both;
+font-size: 200%;
+padding-left:10px;
+padding:0px;
+}
+
+.product_title{
+clear:both;
+padding-left:10px;
+font-size: 200%;
+font-weight:bold;
+}
+
+.product_detail{
+clear:both;
 padding:0px;
 }
 

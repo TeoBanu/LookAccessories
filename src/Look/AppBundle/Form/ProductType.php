@@ -12,10 +12,16 @@ class ProductType extends AbstractType
     {
         $builder->add('name');
         $builder->add('price');
-        $builder->add('category');
         $builder->add('stock');
+        $builder->add('category', 'entity', array(
+            'class' => 'LookAppBundle:Category',
+            'property' => 'name',
+        ));
         $builder->add('brand');
-        $builder->add('description');
+        $builder->add('description', 'textarea', array(
+            'attr' => array('cols' => '40', 'rows' => '10'),
+        ));
+        $builder->add('file');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)

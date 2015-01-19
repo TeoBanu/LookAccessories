@@ -1,0 +1,18 @@
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{% block title %} Admin {% endblock %}
+
+{% set menu_selected = 'admin' %}
+{% block content %}
+
+    <h1>Admin Panel</h1>
+
+    <hr>
+
+    <table>
+        <tr><td style="padding:5px"><a href="/products_admin">Products</a></td></tr>
+        <tr><td style="padding:5px"><a href="/categories_admin">Products categories</a></td></tr>
+        <tr><td style="padding:5px"><a href="/orders_admin">Orders archive</a></td></tr>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{% block title %} Products {% endblock %}
+
+{% set menu_selected = 'admin' %}
+
+{% block content %}
+
+    <h1>Orders Archive</h1>
+
+    </br>
+    <hr>
+    </br>
+
+    {% for order in orders %}
+        {% set total = 0 %}
+        <div>User {{ order.getUser().getUsername() }} ordered:</div>
+        <ul>
+            {% for cartProduct in order.getCartProducts() %}
+            <li><strong>{{ cartProduct.getQuantity() }}</strong> pieces of <strong>{{ cartProduct.getProduct().getName() }}</strong> at the price of <strong>{{ cartProduct.getProduct().getPrice() }} $</strong></li>
+            {% set total = total + (cartProduct.getQuantity() * cartProduct.getProduct().getPrice()) %}
+            {% endfor %}
+            <li><strong>Total: {{ total }} $</strong></li>
+        </ul>
+        </br>
+        </br>
+    {% endfor %}
+
+{% endblock %}

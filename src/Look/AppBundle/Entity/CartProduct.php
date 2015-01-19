@@ -47,6 +47,20 @@ class CartProduct
         return $this->quantity;
     }
 
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    public function setProduct($product)
+    {
+        $this->product = $product;
+    }
+
+    public function setCart($cart) {
+        $this->cart = $cart;
+    }
+
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;

@@ -2,45 +2,31 @@
 
 {% block title %} Products {% endblock %}
 
+{% set menu_selected = 'products' %}
+
 {% block content %}
 
-    <h1>Products:</h1>
+    <!-- <h1>Products</h1> -->
+    <hr>
+    </br>
 
-    <table border="1">
-        <tr>
-            <td style="font-weight:bold">Name</td>
-            <td style="font-weight:bold">Price</td>
-            <td style="font-weight:bold">Category</td>
-            <td style="font-weight:bold">Stock</td>
-            <td style="font-weight:bold">Brand</td>
-            <td style="font-weight:bold">Description</td>
-        </tr>
-        {% for product in products %}
+    {% for product in products %}
+        <div class="product_title">{{ product.name }}</div>
+        <table>
             <tr>
-                    <td>
-                        {{ product.name }}
-                    </td>
-                    <td>
-                        {{ product.price }}
-                    </td>
-                    <td>
-                        {{ product.category }}
-                    </td>
-                    <td>
-                        {{ product.stock }}
-                    </td>
-                    <td>
-                        {{ product.brand }}
-                    </td>
-                    <td>
-                        {{ product.description }}
-                    </td>
-            </tr>
-        {% endfor %}
-    </table>
+                <td><img src="{{ product.getWebPath() }}" alt="Product {{ product.name }} image" width="250" height="250"></td>
+                <td style="width: 400px;padding:20px">{{ product.description }}</td>
+            <tr>
+            <tr><td class="product_detail"><strong>Category</strong>: {{ product.category.name }}</td><tr>
+            <tr><td class="product_detail"><strong>Stock</strong>: {{ product.stock }}</td><tr>
+            <tr><td class="product_detail"><strong>Brand</strong>: {{ product.brand }}</td><tr>
+            <tr><td class="product_detail"><strong>Price</strong>: {{ product.price }} $</td><tr>
+            <tr><td><a href="/addToCard/{{ product.getId() }}" stlye="font-size: 150%">Add to cart</a></td><tr>
+        </table>
 
-    <form action="addProduct">
-        <input type="submit" value="Add New Product" class="symfony-button-grey">
-    </form>
+        </br>
+        <hr>
+        </br>
+    {% endfor %}
 
 {% endblock %}

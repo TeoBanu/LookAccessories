@@ -1,0 +1,33 @@
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{% block title %} Categories {% endblock %}
+
+{% set menu_selected = 'admin' %}
+
+{% block content %}
+
+    <h1>Categories Admin Page</h1>
+
+    <table border="1px">
+        <tr>
+            <th style="font-weight:bold">Name</th>
+            <th style="font-weight:bold;text-align: center">Action</th>
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td style="padding: 15px">{{ category.name }}</td>
+                <td style="padding: 15px">
+                    <a href="/updateCategory/{{ category.id }}">Update</a> | 
+                    <a href="/deleteCategory/{{ category.id }}">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    </br>
+    <hr>
+    </br>
+
+    <a href="/addCategory" style="font-size: 130%">Add New Category</a>
+
+{% endblock %}

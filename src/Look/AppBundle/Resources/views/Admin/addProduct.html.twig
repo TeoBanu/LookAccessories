@@ -3,24 +3,26 @@
 
 {% block title %} Add Product {% endblock %}
 
+{% set menu_selected = 'admin' %}
+
 {% block content %}
 
-	<div class="form_wrapper">
-    <form action="{{ path('add_product') }}" method="POST" id="add_product_form">
+    <div class="form_wrapper">
+    <form action="{{ path('add_product') }}" method="POST" {{ form_enctype(form) }} id="add_product_form">
         {{ form_errors(form) }}
 
-		<div class="form_row"><h2>Add new product</h2></div>
-		
+        <div class="form_row"><h2>Add new product</h2></div>
+
         {{ form_row(form.name) }}
         {{ form_row(form.price) }}
-        {{ form_row(form.category) }}
         {{ form_row(form.stock) }}
+        {{ form_row(form.category) }}
         {{ form_row(form.brand) }}
         {{ form_row(form.description) }}
-
+        {{ form_row(form.file) }}
         {{ form_rest(form) }}
         <input type="submit" value="Add" class="symfony-button-grey" />
     </form>
-	</div>
+    </div>
 
 {% endblock %}

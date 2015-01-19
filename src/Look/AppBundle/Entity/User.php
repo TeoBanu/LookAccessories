@@ -89,6 +89,11 @@ class User
     public function __construct() {
         $this->carts = new ArrayCollection();
     }
+
+    public function addCart($cart)
+    {
+        $this->carts->add($cart);
+    }
     
     public function getIsAdmin() 
     {

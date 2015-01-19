@@ -1,0 +1,33 @@
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{% block title %} Products {% endblock %}
+
+{% set menu_selected = 'admin' %}
+
+{% block content %}
+
+    <h1>Products Admin Page</h1>
+
+    <a href="/addProduct" style="font-size: 130%">Add New Product</a>
+    </br>
+    </br>
+    <hr>
+
+    {% for product in products %}
+        <h2>{{ product.name }}</h2>
+        <div><img src="{{ product.getWebPath() }}" alt="Product {{ product.name }} image" width="200" height="200"></div>
+        <div style="width:400px">{{ product.description }}</div>
+        </br>
+        <div>Brand: {{ product.brand }}</div>
+        <div>Price: {{ product.price }} $</div>
+        <div>Category: {{ product.category.name }}</div>
+        <div>Stock: {{ product.stock }}</div>
+        </br>
+        <a href="/updateProduct/{{ product.id }}" style="font-size: 130%">Update</a> | 
+        <a href="/deleteProduct/{{ product.id }}" style="font-size: 130%">Delete</a> </br>
+        </br>
+        <hr>
+        </br>
+    {% endfor %}
+
+{% endblock %}

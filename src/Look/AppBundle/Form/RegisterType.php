@@ -13,7 +13,12 @@ class RegisterType extends AbstractType
         $builder->add('address', new AddressType());
         $builder->add('first_name');
         $builder->add('last_name');
-        $builder->add('gender');
+        $builder->add('gender', 'choice', array(
+            'choices' => array(
+                'M' => 'Male',
+                'F' => 'Female'
+            ),
+        ));
         $builder->add('phone_number');
         $builder->add('email');
         $builder->add('username');

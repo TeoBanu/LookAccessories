@@ -5,6 +5,7 @@ namespace Look\AppBundle\Controller;
 use Look\AppBundle\Form\LoginType;
 use Look\AppBundle\Form\RegisterType;
 use Look\AppBundle\Entity\User;
+use Look\AppBundle\Entity\Cart;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -108,10 +109,48 @@ class AccountController extends Controller
             $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
             $persistedUser->setPassword($encryptedPass);
             
+            $cart = new Cart();
+            $cart->setUser($persistedUser);
+            $cart->setIsCart(true);
+            
             $em->persist($form->getData());
+            $em->persist($cart);
             $em->flush();
             
             return $this->redirect($this->generateUrl("account_login"));
+        }
+        
+        return array('form' => $form->createView());
+    }
+
+    /**
+     * @Route("/update", name="account_update")
+     * @Template
+     */ 
+    public function updateAction(Request $request) {
+        $user = $request->getSession()->get('user/credential');
+        if (!$user) {
+            return $this->redirect($this->generateUrl('account_login'));
+        }
+
+        $userModel = $this->getDoctrine()->getManager()
+            ->getRepository('LookAppBundle:User')
+            ->find($user->getId());
+        $form = $this->createForm(new RegisterType(), $userModel);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+
+            $persistedUser = $form->getData();
+            $plainPassword = $persistedUser->getPassword();
+            $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
+            $persistedUser->setPassword($encryptedPass);
+
+            $em->persist($form->getData());
+            $em->flush();
+
+            return $this->redirect($this->generateUrl("index"));
         }
         
         return array('form' => $form->createView());

@@ -45,15 +45,26 @@ class Cart
         return $this->id;
     }
     
-    public function getUserid()
+    public function getUser()
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUserId($user_id)
+    public function setUser($user)
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
     }
+
+    public function getCartProducts()
+    {
+        return $this->cartProducts;
+    }
+
+    public function addCartProduct($cartProduct)
+    {
+        $this->cartProducts->add($cartProduct);
+    }
+
     public function getIsCart()
     {
         return $this->is_cart;

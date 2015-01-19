@@ -1,12 +1,16 @@
 {% block account %}
-	{% set user = app.session.get('user/credential') %}
-	{% if user %}
-		{# logout / edit profile #}
-			<li><a href="/logout">Logout</a></li>
-			<li {% if menu_selected == 'account' %} class="selected" {% endif %}><a href="/account">My Account - {{user.firstName}}</a></li>
-	{% else %}
-		{# login / register #}
-			<li {% if menu_selected == 'login' %} class="selected" {% endif %}><a href="/login"> Login </a></li>
-			<li {% if menu_selected == 'register' %} class="selected" {% endif %}><a href="/register"> Register </a></li>
-	{% endif %}
+    {% set user = app.session.get('user/credential') %}
+    {% if user %}
+        {# logout / edit profile #}
+            <li><a href="/logout" style="float:right;padding-right: 15px;">Logout</a></li>
+            <li {% if menu_selected == 'account' %} class="selected" {% endif %} style="float:right"><a href="/update">My Account - {{user.firstName}}</a></li>
+            <li {% if menu_selected == 'cart' %} class="selected" {% endif %} style="float:right"><a href="/cart">My Cart</a></li>
+        {% if user.getIsAdmin() %}
+            <li {% if menu_selected == 'admin' %} class="selected" {% endif %} style="float:right"><a href="/admin"> Admin </a></li>
+        {% endif %}
+    {% else %}
+        {# login / register #}
+            <li {% if menu_selected == 'register' %} class="selected" {% endif %} style="float:right;padding-right: 10px"><a href="/register"> Register </a></li>
+            <li {% if menu_selected == 'login' %} class="selected" {% endif %} style="float:right"><a href="/login"> Login </a></li>
+    {% endif %}
 {% endblock %}

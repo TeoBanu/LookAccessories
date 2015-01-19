@@ -1,12 +1,11 @@
 {% block menu %}
-	<ul>
+    <ul>
       {% if not menu_selected is defined %}
         {% set menu_selected = 'home' %}
       {% endif %}
       <li {% if menu_selected == 'home' %} class="selected" {% endif %}> <a href="/">Home</a> </li>
       <li {% if menu_selected == 'products' %} class="selected" {% endif %}> <a href="products">Products</a> </li>
       <li {% if menu_selected == 'about' %} class="selected" {% endif %}> <a href="about">About</a> </li>
-
       {{ include('LookAppBundle:components:user_area_component.html.twig') }}
     </ul>
 {% endblock %}

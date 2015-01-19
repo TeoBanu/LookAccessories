@@ -1,0 +1,38 @@
+{% extends 'LookAppBundle::look_layout_center.html.twig' %}
+
+{% block title %} Products {% endblock %}
+
+{% set menu_selected = 'cart' %}
+{% set total = 0 %}
+
+{% block content %}
+
+    <h1>My Cart</h1>
+    <hr>
+    </br>
+    {% if not cart.getCartProducts().isEmpty() %}
+        <table border="1px">
+            <tr>
+                <th>Product Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Cost</th>
+            </tr>
+            {% for cartProduct in cart.getCartProducts() %}
+            <tr>
+                <td style="padding: 13px">{{ cartProduct.getProduct().getName() }}</td>
+                <td style="text-align: right;padding: 13px">{{ cartProduct.getProduct().getPrice() }} $</td>
+                <td style="text-align: center;padding: 13px">{{ cartProduct.getQuantity() }}</td>
+                <td style="text-align: right;padding: 13px">{{ cartProduct.getProduct().getPrice() * cartProduct.getQuantity() }} $</td>
+            </tr>
+            {% set total = total + (cartProduct.getProduct().getPrice() * cartProduct.getQuantity()) %}
+            {% endfor %}
+        </table>
+    {% else %}
+        <h2><i>Empty card</i></h2>
+    {% endif %}
+
+    <h2>Total: {{ total }} $</h2>
+    <h1><a href="/buy">Buy</a></h1>
+
+{% endblock %}
