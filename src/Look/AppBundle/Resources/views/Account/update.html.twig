@@ -4,7 +4,7 @@
 {# initialize variables #}
 {% set menu_selected = 'account' %}
 
-{% block title %} Update {% endblock %}
+{% block title %} Edit Profile {% endblock %}
 
 {% block content %}
     <div class="form_wrapper">
@@ -12,10 +12,6 @@
         {{ form_errors(form) }}
 
         <div class="form_row"><h2>User info</h2></div>
-
-        {{ form_row(form.username) }}
-        {{ form_row(form.password.password) }}
-        {{ form_row(form.password.confirm) }}
         {{ form_row(form.email) }}
         {{ form_row(form.phone_number) }}
         {{ form_row(form.first_name) }}

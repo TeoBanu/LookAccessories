@@ -10,6 +10,9 @@
     <h1>My Cart</h1>
     <hr>
     </br>
+    {% for flashMessage in app.session.flashbag.get('error') %}
+        <h2 class="error"> {{ flashMessage }} </h2>
+    {% endfor %}
     {% if not cart.getCartProducts().isEmpty() %}
         <table border="1px">
             <tr>
@@ -29,7 +32,7 @@
             {% endfor %}
         </table>
     {% else %}
-        <h2><i>Empty card</i></h2>
+        <h2><i>Empty cart</i></h2>
     {% endif %}
 
     <h2>Total: {{ total }} $</h2>

@@ -13,9 +13,14 @@ class ProductType extends AbstractType
         $builder->add('name');
         $builder->add('price');
         $builder->add('stock');
-        $builder->add('category', 'entity', array(
-            'class' => 'LookAppBundle:Category',
-            'property' => 'name',
+        $builder->add('category', 'choice', array(
+            'choices' => array(
+                'Bracelets' => 'Bracelets', 
+                'Earrings' => 'Earrings', 
+                'Handbags' => 'Handbags', 
+                'Necklaces' => 'Necklaces', 
+                'Watches' => 'Watches'
+            ),
         ));
         $builder->add('brand');
         $builder->add('description', 'textarea', array(

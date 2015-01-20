@@ -3,9 +3,20 @@
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
     <link rel="stylesheet" href={{ asset('bundles/lookapp/css/style.css') }} />
     <link rel="stylesheet" href={{ asset('bundles/framework/css/body.css') }} />
+    <script src="{{ asset('bundles/lookapp/dropdown.js') }}" type="text/javascript"></script>
   {% endblock %}
   
   {% block body %}
+
+  {% set user = app.session.get('user/credential') %}
+    {% set logged = false %}
+    {% set admin = false %}
+    {% if user %}
+      {% set logged = true %}
+      {% if user.getIsAdmin() %}
+        {% set admin = true %}
+      {% endif %}
+    {% endif %}
   
   <div id="wrap">
     <div class="header">
@@ -17,7 +28,7 @@
     </div>
   
   {% block columns %}
-    <h1 style="text-align: center;">Welcome !</h1>
+    <h1 style="text-align: center;">Welcome!</h1>
     <div align=center><img src={{ asset('bundles/lookapp/img/body.jpg') }} /></div>
   {% endblock %}
   </div>

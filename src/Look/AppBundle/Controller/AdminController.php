@@ -9,7 +9,6 @@ use Look\AppBundle\Entity\Category;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Form\FormError;
 
@@ -21,21 +20,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AdminController extends Controller
 {
-
-    /**
-     * @Route("/admin", name="index_admin")
-     * @Template
-     */ 
-    public function indexAction(Request $request)
-    {
-        $user = $request->getSession()->get('user/credential');
-        if ($user) {
-            if ($user->getIsAdmin()) {
-                return $this->render('LookAppBundle:Admin:index.html.twig');
-            }
-        }
-        return $this->redirect($this->generateUrl('index'));
-    }
 
     /**
      * @Route("/products_admin", name="products_admin")

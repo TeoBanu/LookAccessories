@@ -1,0 +1,16 @@
+<h1>Thank you for ordering from us, {{ firstname }}!</h1>
+Order number {{ order }} has been filed and is being processed.<br/>
+
+Delivery details:<br/>
+Address - {{ address }}<br/>
+Personal details - {{ details }}<br/>
+
+Products:<br/>
+<ol>
+{% set total = 0 %}
+{% for cartProduct in cart.getCartProducts() %}
+	<li> {{ cartProduct.getProduct().getName() }} x {{ cartProduct.getQuantity() }} pcs = <b>{{ cartProduct.getProduct().getPrice() * cartProduct.getQuantity() }}$</b> </li>
+	{% set total = total + cartProduct.getProduct().getPrice() * cartProduct.getQuantity() %}
+{% endfor %}
+</ol>
+<h2>Total cost: {{ total }}$</h2>

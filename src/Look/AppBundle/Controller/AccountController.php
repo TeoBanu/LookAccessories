@@ -4,6 +4,8 @@ namespace Look\AppBundle\Controller;
 
 use Look\AppBundle\Form\LoginType;
 use Look\AppBundle\Form\RegisterType;
+use Look\AppBundle\Form\PasswordUpdateType;
+use Look\AppBundle\Form\AccountUpdateType;
 use Look\AppBundle\Entity\User;
 use Look\AppBundle\Entity\Cart;
 
@@ -136,18 +138,46 @@ class AccountController extends Controller
         $userModel = $this->getDoctrine()->getManager()
             ->getRepository('LookAppBundle:User')
             ->find($user->getId());
-        $form = $this->createForm(new RegisterType(), $userModel);
+        $form = $this->createForm(new AccountUpdateType(), $userModel);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($form->getData());
+            $em->flush();
+
+            return $this->redirect($this->generateUrl("index"));
+        }
+        
+        return array('form' => $form->createView());
+    }
+
+
+    /**
+     * @Route("/updatePassword", name="account_updatePassword")
+     * @Template
+     */ 
+    public function updatePasswordAction(Request $request) {
+        $user = $request->getSession()->get('user/credential');
+        if (!$user) {
+            return $this->redirect($this->generateUrl('account_login'));
+        }
+
+        $userModel = $this->getDoctrine()->getManager()
+            ->getRepository('LookAppBundle:User')
+            ->find($user->getId());
+        $form = $this->createForm(new PasswordUpdateType(), $userModel);
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
-            $persistedUser = $form->getData();
-            $plainPassword = $persistedUser->getPassword();
+            $updatedUser = $form->getData();
+            $plainPassword = $updatedUser->getPassword();
             $encryptedPass = hash("tiger192,4", self::SALT.$plainPassword);
-            $persistedUser->setPassword($encryptedPass);
+            $updatedUser->setPassword($encryptedPass);
 
-            $em->persist($form->getData());
+            $em->persist($updatedUser);
             $em->flush();
 
             return $this->redirect($this->generateUrl("index"));

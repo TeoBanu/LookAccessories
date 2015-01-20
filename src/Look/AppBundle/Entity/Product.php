@@ -38,9 +38,10 @@ class Product
      
      
     /**
-     * @ORM\OneToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     **/
+     * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank()
+     * @Assert\Length(max = 100)
+     */
      protected $category;
      
      
@@ -157,7 +158,7 @@ class Product
 
     public function getWebPath()
     {
-        return null === $this->path ? null : $this->getUploadDir().'/'.$this->path;
+        return null === $this->path ? null : '/'.$this->getUploadDir().'/'.$this->path;
     }
 
     protected function getUploadRootDir()

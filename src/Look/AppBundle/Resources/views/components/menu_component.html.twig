@@ -1,11 +1,77 @@
 {% block menu %}
+
+    {% if not menu_selected is defined %}
+      {% set menu_selected = 'home' %}
+    {% endif %}
+
     <ul>
-      {% if not menu_selected is defined %}
-        {% set menu_selected = 'home' %}
-      {% endif %}
+      {# LEFT ----------- #}
+
+      {# Home #}
       <li {% if menu_selected == 'home' %} class="selected" {% endif %}> <a href="/">Home</a> </li>
-      <li {% if menu_selected == 'products' %} class="selected" {% endif %}> <a href="products">Products</a> </li>
+
+      {# Products #}
+      <li {% if menu_selected == 'products' %} class="selected" {% endif %}>
+      <a href="/products" onmouseover="mopen('m1')" onmouseout="mclosetime()">Products</a>
+        <div id="m1" class="dropdown"
+            onmouseover="mcancelclosetime()" 
+            onmouseout="mclosetime()">
+        <a href="/products/Bracelets">Bracelets</a>
+        <a href="/products/Earrings">Earrings</a>
+        <a href="/products/Handbags">Handbags</a>
+        <a href="/products/Necklaces">Necklaces</a>
+        <a href="/products/Watches">Watches</a>
+        </div>
+      </li>
+
+      {# About #}
       <li {% if menu_selected == 'about' %} class="selected" {% endif %}> <a href="about">About</a> </li>
-      {{ include('LookAppBundle:components:user_area_component.html.twig') }}
+
+      {# RIGHT ----------- #}
+
+      {% if logged %}
+
+          {# Account #}
+          <li {% if menu_selected == 'account' %} class="selected" {% endif %} style="float:right;padding-right: 15px;">
+          <a href="#" onmouseover="mopen('m2')" onmouseout="mclosetime()">Account - {{user.firstName}}</a>
+            <div id="m2" class="dropdown"
+                onmouseover="mcancelclosetime()" 
+                onmouseout="mclosetime()">
+            <a href="/update">Edit profile</a>
+            <a href="/updatePassword">Change Password</a>
+            <a href="/logout">Logout</a>
+            </div>
+          </li>
+
+          {% if not admin %}
+            {# Cart #}
+            <li {% if menu_selected == 'cart' %} class="selected" {% endif %} style="float:right"><a href="/cart">Cart</a></li>
+          {% endif %}
+
+      {% endif %}
+
+      {% if admin %}
+          {# Admin #}
+          <li {% if menu_selected == 'admin' %} class="selected" {% endif %} style="float:right">
+          <a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Admin</a>
+            <div id="m3" class="dropdown"
+                onmouseover="mcancelclosetime()" 
+                onmouseout="mclosetime()">
+            <a href="/products_admin">Products</a>
+            <a href="/orders_admin">Order archive</a>
+            </div>
+          </li>
+      {% endif %}
+
+      {% if not logged %}
+
+        {# Register #}
+        <li {% if menu_selected == 'register' %} class="selected" {% endif %} style="float:right;padding-right: 10px"><a href="/register"> Register </a></li>
+
+        {# Login #}
+        <li {% if menu_selected == 'login' %} class="selected" {% endif %} style="float:right"><a href="/login"> Login </a></li>
+
+      {% endif %}
+      <div style="clear:both">
     </ul>
 {% endblock %}

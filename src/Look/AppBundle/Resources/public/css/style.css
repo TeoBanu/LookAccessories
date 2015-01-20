@@ -1,6 +1,5 @@
 body
 {
-background-color:#c0c0c0;
 font-family:Arial, Helvetica, sans-serif;
 padding:0;
 font-size:12px;
@@ -67,6 +66,7 @@ display:inline;
 padding:0px;
 margin:0px;
 height:27px;
+float:left;
 }
 #menu ul li a{
 height:27px;
@@ -74,19 +74,17 @@ display:block;
 padding:0px 10px 0 10px;
 margin:0 4px 0 4px;
 _margin:0 2px 0 2px;
-float:left;
 text-decoration:none;
 text-align:center;
 color:#fff;
 font-size:13px;
 line-height:27px;
 }
-#menu ul li.selected a{
+#menu ul li.selected > a{
 height:27px;
 display:block;
 padding:0px 10px 0 10px;
 margin:0 5px 0 5px;
-float:left;
 text-decoration:none;
 text-align:center;
 color:#fff;
@@ -96,6 +94,10 @@ background:url(../img/menu_bt_bg.gif) repeat-x center;
 }
 #menu ul li a:hover{
 background:url(../img/menu_bt_bg.gif) repeat-x center;
+}
+.dropdown {
+	background-color: #694630;
+	visibility: hidden;
 }
 /*----------------crumb_nav------------------*/
 .crumb_nav{
@@ -160,10 +162,11 @@ font-size:11px;
 padding:0px 15px 0 0 ;
 }
 .about{
-width:337px;
-clear:both;
-background:url(../img/border.gif) no-repeat bottom center;
-padding:0 0 20px 0;
+padding: 20px;
+background-image: url(/bundles/lookapp/img/lady.png);
+background-repeat: no-repeat;
+background-position-x: right;
+background-position-y: 100px;
 }
 img.right{
 float:right;
@@ -396,7 +399,6 @@ float:none;
 padding:10px;
 _margin:20px 0 0 5px;
 border:1px #DFD1D2 dashed;
-position:relative;
 display: inline-block; /* makes width wrap the size of content*/
 }
 .form_row{
@@ -413,7 +415,9 @@ text-align:right;
 padding:4px 5px 0 0;
 color: #333333;
 }
-
+h2.error{
+color:red;
+}
 span.error{
 padding-left:5px;
 }

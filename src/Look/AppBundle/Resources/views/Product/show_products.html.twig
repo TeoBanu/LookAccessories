@@ -7,6 +7,9 @@
 {% block content %}
 
     <!-- <h1>Products</h1> -->
+    {% if products is empty %}
+        <p> No products in this category, please check back later. </p>
+    {% endif %}
     <hr>
     </br>
 
@@ -17,11 +20,13 @@
                 <td><img src="{{ product.getWebPath() }}" alt="Product {{ product.name }} image" width="250" height="250"></td>
                 <td style="width: 400px;padding:20px">{{ product.description }}</td>
             <tr>
-            <tr><td class="product_detail"><strong>Category</strong>: {{ product.category.name }}</td><tr>
+            <tr><td class="product_detail"><strong>Category</strong>: {{ product.category }}</td><tr>
             <tr><td class="product_detail"><strong>Stock</strong>: {{ product.stock }}</td><tr>
             <tr><td class="product_detail"><strong>Brand</strong>: {{ product.brand }}</td><tr>
             <tr><td class="product_detail"><strong>Price</strong>: {{ product.price }} $</td><tr>
-            <tr><td><a href="/addToCard/{{ product.getId() }}" stlye="font-size: 150%">Add to cart</a></td><tr>
+            {% if (not admin) and (logged)  %}
+                <tr><td><a href="/addToCard/{{ product.getId() }}" stlye="font-size: 150%">Add to cart</a></td><tr>
+            {% endif %}
         </table>
 
         </br>

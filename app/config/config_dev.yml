@@ -11,6 +11,11 @@ web_profiler:
     toolbar: "%debug_toolbar%"
     intercept_redirects: "%debug_redirects%"
 
+swiftmailer:
+    transport: gmail
+    username:  look.accessories.romania@gmail.com
+    password:  teostefiionut
+
 monolog:
     handlers:
         main:
