@@ -33,7 +33,7 @@ class ProductController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('LookAppBundle:Product');
-        $products = $repository->findAll();
+        $products = $repository->findBy(array('is_active' => True));
         return $this->render('LookAppBundle:Product:show_products.html.twig',
                              array('products' => $products));
     }
@@ -47,7 +47,7 @@ class ProductController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('LookAppBundle:Product');
         $products = $repository->findBy(
-            array('category' => $category)
+            array('is_active' => True, 'category' => $category)
         );
         return $this->render('LookAppBundle:Product:show_products.html.twig',
                              array('products' => $products));
@@ -151,7 +151,6 @@ class ProductController extends Controller
             } else {
                 $this->get('session')->getFlashBag()->set('error', 'Cannot order before adding products to your cart');
             }
-
 
             return $this->redirect($this->generateUrl("show_cart"));
         }

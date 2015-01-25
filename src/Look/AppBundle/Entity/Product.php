@@ -70,6 +70,11 @@ class Product
      */
     protected $path;
 
+     /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $is_active;
+
     private $temp;
 
     /**
@@ -236,4 +241,13 @@ class Product
         $this->description = $description;
     }
      
+    public function getIsActive()
+    {
+        return $this->description;
+    }
+    
+    public function setIsActive($is_active)
+    {
+        $this->is_active = $is_active;
+    }
 }

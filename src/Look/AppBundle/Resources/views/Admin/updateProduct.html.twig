@@ -8,7 +8,7 @@
 {% block content %}
 
     <div class="form_wrapper">
-    <form action="{{ path('update_product', { 'product_id' : product_id }) }}" method="POST" id="update_product_form">
+    <form action="{{ path('update_product', { 'product_id' : product_id }) }}" method="POST" {{ form_enctype(form) }} id="update_product_form">
         {{ form_errors(form) }}
 
         <div class="form_row"><h2>Update product</h2></div>

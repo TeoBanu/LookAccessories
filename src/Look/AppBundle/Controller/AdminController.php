@@ -32,7 +32,7 @@ class AdminController extends Controller
             if ($user->getIsAdmin()) {
                 $em = $this->getDoctrine()->getManager();
                 $repository = $em->getRepository('LookAppBundle:Product');
-                $products = $repository->findAll();
+                $products = $repository->findBy(array('is_active' => True));
                 return $this->render('LookAppBundle:Admin:show_products.html.twig',
                                      array('products' => $products));
             }
@@ -54,7 +54,9 @@ class AdminController extends Controller
                 $form->handleRequest($request);
                 if ($form->isValid()) {
                     $em = $this->getDoctrine()->getManager();
-                    $em->persist($form->getData());
+                    $givenProduct = $form->getData();
+                    $givenProduct->setIsActive(True);
+                    $em->persist($givenProduct);
                     $em->flush();
                     return $this->redirect($this->generateUrl("products_admin"));
                 }
@@ -77,7 +79,8 @@ class AdminController extends Controller
                 $repository = $em->getRepository('LookAppBundle:Product');
                 $product = $repository->find($product_id);
                 if ($product) {
-                    $em->remove($product);
+                    $product->setIsActive(False);
+                    $em->persist($product);
                     $em->flush();
                     return $this->redirect($this->generateUrl("products_admin"));
                 } else {
@@ -119,25 +122,6 @@ class AdminController extends Controller
     }
 
     /**
-     * @Route("/categories_admin", name="categories_admin")
-     * @Template
-     */ 
-    public function showCategoriesAction(Request $request)
-    {
-        $user = $request->getSession()->get('user/credential');
-        if ($user) {
-            if ($user->getIsAdmin()) {
-                $em = $this->getDoctrine()->getManager();
-                $repository = $em->getRepository('LookAppBundle:Category');
-                $categories = $repository->findAll();
-                return $this->render('LookAppBundle:Admin:show_categories.html.twig',
-                                     array('categories' => $categories));
-            }
-        }
-        return $this->redirect($this->generateUrl('index'));
-    }
-
-    /**
      * @Route("/orders_admin", name="orders_admin")
      * @Template
      */ 
@@ -151,84 +135,6 @@ class AdminController extends Controller
                     ->findBy(array('is_cart' => false));
                 return $this->render('LookAppBundle:Admin:show_orders.html.twig',
                                      array('orders' => $orders));
-            }
-        }
-        return $this->redirect($this->generateUrl('index'));
-    }
-
-    /**
-     * @Route("/addCategory", name="add_category")
-     * @Template
-     */
-    public function addCategoryAction(Request $request)
-    {
-        $user = $request->getSession()->get('user/credential');
-        if ($user) {
-            if ($user->getIsAdmin()) {
-                $category = new Category();
-                $form = $this->createForm(new CategoryType(), $category);
-                $form->handleRequest($request);
-                if ($form->isValid()) {
-                    $em = $this->getDoctrine()->getManager();
-                    $em->persist($form->getData());
-                    $em->flush();
-                    return $this->redirect($this->generateUrl("categories_admin"));
-                }
-                return array('form' => $form->createView());
-            }
-        }
-        return $this->redirect($this->generateUrl('index'));
-    }
-
-    /**
-     * @Route("/updateCategory/{category_id}", name="update_category")
-     * @Template
-     */
-    public function updateCategoryAction(Request $request, $category_id)
-    {
-        $user = $request->getSession()->get('user/credential');
-        if ($user) {
-            if ($user->getIsAdmin()) {
-                $em = $this->getDoctrine()->getManager();
-                $repository = $em->getRepository('LookAppBundle:Category');
-                $category = $repository->find($category_id);
-                if ($category) {
-                    $form = $this->createForm(new CategoryType(), $category);
-                    $form->handleRequest($request);
-                    if ($form->isValid()) {
-                        $em = $this->getDoctrine()->getManager();
-                        $em->persist($form->getData());
-                        $em->flush();
-                        return $this->redirect($this->generateUrl("categories_admin"));
-                    }
-                    return array('form' => $form->createView(), 'category_id' => $category_id);
-                } else {
-                    return new Response("<html><body>Category doesn't exist</body></html>");
-                }
-            }
-        }
-        return $this->redirect($this->generateUrl('index'));
-    }
-
-    /**
-     * @Route("/deleteCategory/{category_id}", name="delete_category")
-     * @Template
-     */
-    public function deleteCategoryAction(Request $request, $category_id)
-    {
-        $user = $request->getSession()->get('user/credential');
-        if ($user) {
-            if ($user->getIsAdmin()) {
-                $em = $this->getDoctrine()->getManager();
-                $repository = $em->getRepository('LookAppBundle:Category');
-                $category = $repository->find($category_id);
-                if ($category) {
-                    $em->remove($category);
-                    $em->flush();
-                    return $this->redirect($this->generateUrl("categories_admin"));
-                } else {
-                    return new Response("<html><body>Category doesn't exist</body></html>");
-                }
             }
         }
         return $this->redirect($this->generateUrl('index'));

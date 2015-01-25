@@ -17,12 +17,16 @@ LookAccessories Symfony2 Application
         php composer.phar create-project symfony/framework-standard-edition -n LookApp
         git clone https://github.com/TeoBanu/LookAccessories.git
         Copy-Item .\LookAccessories\* .\LookApp\ -Recurse -Force
+        Remove-Item .\LookAccessories -Recurse -Force
         cd .\LookApp
         php ..\composer.phar update
-        php app/console doctrine:database:drop --force
-        php app/console doctrine:database:create
-        php app/console doctrine:schema:update --force
         php app/console assets:install web --symlink
+
+ - Create the ``MySQL`` database. Replace ``<root_password>`` with your root password:
+
+        php app/console doctrine:database:drop --force # It deletes the current one if it exists
+        php app/console doctrine:database:create
+        &cmd /c 'mysql --binary-mode -u root -p"<root_password>" look_accessories < look_db.sql'
 
 ### Useful commands (you must be in the main app folder):
 
